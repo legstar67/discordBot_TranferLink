@@ -40,7 +40,7 @@ async def on_ready():
 # Open the link with firefox
 @client.event
 async def on_message(message):
-    logger.info(f"Message reçu: {message.content}") ####### TODO for debuging
+    #logger.info(f"Message reçu: {message.content}") ####### TODO for debuging
     if(message.content.lower().replace(" ", "").startswith("http")):
         if (str(message.author) in trusted_users):
             if(message.content.lower().replace(" ", "").startswith("https")):
