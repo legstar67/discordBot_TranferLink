@@ -1,5 +1,12 @@
 # discordBot_TranferLink
 
+----------- COMMANDS -----------
+- "httpsREST_OF_YOUR_LINK" open directly the link on firefox
+- ".c YOUR TEXT" sends your text to the clipboard of your computer
+- "test" to know who you are and the trusted users
+
+
+
 ----------- GOAL -----------
 
 With your phone or another device you send to the bot a link. The bot which is running on your computer, will instantly open the web link on your navigator.
@@ -72,3 +79,10 @@ TIPS : to help you to debug potential bugs you can see some logs and if the serv
 
 
 
+----------- Installation of xsel -----------
+
+Why is it useful --> xsel manages the clipboard
+
+How to install ?
+'''sudo apt update'''
+'''sudo apt install xsel'''

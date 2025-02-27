@@ -15,8 +15,8 @@ intents.message_content = True
 intents.guilds = True
 intents.guild_messages = True
 
-client = discord.Client(intents=intents)
-#bot = commands.Bot(command_prefix='', intents=intents)
+#client = discord.Client(intents=intents, command_prefix = '!')
+client = commands.Bot(command_prefix='!', intents=intents)
 
 # Executed when the bot launches and is ready
 @client.event
@@ -37,12 +37,15 @@ async def on_ready():
 #logger = logging.getLogger(__name__)
 #################
 
-# Open the link with firefox
+
 @client.event
 async def on_message(message):
     #logger.info(f"Message reçu: {message.content}") ####### TODO for debuging
-    if(message.content.lower().replace(" ", "").startswith("http")):
-        if (str(message.author) in trusted_users):
+
+    # Open the link with firefox
+    if (str(message.author) in trusted_users):
+        if(message.content.lower().replace(" ", "").startswith("http")):
+        
             if(message.content.lower().replace(" ", "").startswith("https")):
                 #try:
                     await message.channel.send("Link accepted, it will be opened on your computer")
@@ -58,12 +61,35 @@ async def on_message(message):
                 
             else:
                 await message.channel.send("Link refused")
+        
+        # Copy txt, everything after ".c ", from discord to the clipboard of the PC (and send a notification on the PC )
+        elif(message.content.lower().startswith(".c ")):
+        
+            txt = message.content[len(".c "):]
+            print("Try to copy on the computer the txt is '"+ txt + "'")
 
-        else:
-            await message.channel.send("The bot doesn't trust you...")
+            commandForCopying = 'echo "' + txt + '" | xsel --clipboard --trim' #--trim removes the '\n' at the end of the new txt on the clipboard, which is by default
+            commandForSendingNotification = 'notify-send --urgency=normal --app-name="Tranfer bot" "You just received a new text in your Clipboard !"'
+            subprocess.Popen(commandForCopying, shell=True)
+            subprocess.Popen(commandForSendingNotification, shell=True)
+
+
+
+
+    
     elif(message.content.lower() == "test"):
         await message.channel.send("You are '" + str(message.author) + "'")
         await message.channel.send("the trusted user(s) are " + str(trusted_users) )
+
+    else:
+        await message.channel.send("The bot doesn't trust you...")
+
+    
+
+
+# @client.command(name="sendtxt")
+# async def text_phoneToPC(ctx):
+#     text = ctx.message[]
 
 
 
