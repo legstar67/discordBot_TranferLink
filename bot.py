@@ -102,9 +102,10 @@ async def on_message(message):
 #     text = ctx.message[]
 
 def isCommandCalledFromMessage(message, prefix):
-    while message[0] == ' ':
-        message = message[1:]
-    return message.content.lower().startswith(prefix)
+    msgContent = message.content
+    while msgContent[0] == ' ':
+        msgContent = msgContent[1:]
+    return msgContent.lower().startswith(prefix)
 
 # Start the bot with the token
 if __name__ == "__main__":
