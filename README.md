@@ -2,6 +2,7 @@
 
 ----------- COMMANDS -----------
 - "httpsREST_OF_YOUR_LINK" open directly the link on firefox
+- send image, it will send to your clipboard
 - ".c YOUR TEXT" sends your text to the clipboard of your computer
 - "test" to know who you are and the trusted users
 
